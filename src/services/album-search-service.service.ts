@@ -23,7 +23,7 @@ export class AlbumSearchServiceService {
       return of([]);
     }
     else {
-      let apiURL: string = 'https://itunes.apple.com/search?term=' + searchparameter;
+      let apiURL: string = uri;
       return this.http.jsonp(apiURL, "callback").pipe(
         catchError((error: any) => {
           return of([]);
