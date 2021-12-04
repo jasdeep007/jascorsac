@@ -10,20 +10,50 @@ import { catchError, map } from 'rxjs/operators';
 export class AlbumSearchServiceService {
 
   constructor(private http: HttpClient) { }
+
   getDataFromDeezer(searchparameter: string): Observable<any> {
-    return this.callAPI('Deezer', searchparameter, 'https://api.deezer.com/search?strict=on&q=' + searchparameter + '&output=jsonp');
+    //return this.http.get('https://api.deezer.com/search?q='+searchparameter);
+    if (searchparameter == '') {
+      return of([]);
+    }
+    else {
+      let apiURL: string = 'https://api.deezer.com/search?strict=on&q=' + searchparameter + '&output=jsonp';
+      return this.http.jsonp(apiURL, "callback")
+        .pipe(
+          catchError((error: any) => {
+            return of([]);
+          }),
+          map((res: any) => {
+            if (res.data != undefined)
+              return res.data.map((item: any) => {
+                return new SearchResult(
+                  item.title,
+                  item.artist.name,
+                  item.album.tracklist,
+                  item.artist.picture_small,
+                  item.artist.id,
+                  'Deezer'
+                );
+              });
+            else
+              return of([]);
+          })
+        )
+
+        ;
+    }
+  }
+  handleError(arg0: string, arg1: string): any {
+    throw new Error('Method not implemented.');
   }
   getDataFromiTunes(searchparameter: string): Observable<any> {
-    return this.callAPI('ITunes', searchparameter, 'https://itunes.apple.com/search?term=' + searchparameter);
-  }
-  private callAPI(type: string, searchparameter: string, uri: string): Observable<any> {
     //return this.http.get('https://itunes.apple.com/search?term=' + searchparameter);
     if (searchparameter == '') {
       alert();
       return of([]);
     }
     else {
-      let apiURL: string = uri;
+      let apiURL: string = 'https://itunes.apple.com/search?term=' + searchparameter;
       return this.http.jsonp(apiURL, "callback").pipe(
         catchError((error: any) => {
           return of([]);
@@ -37,7 +67,7 @@ export class AlbumSearchServiceService {
                 item.trackViewUrl,
                 item.artworkUrl30,
                 item.artistId,
-                type
+                'ITunes'
               );
             });
           else
