@@ -37,7 +37,7 @@ export class AlbumSearchServiceService {
                 item.trackViewUrl,
                 item.artworkUrl30,
                 item.artistId,
-                'ITunes'
+                type
               );
             });
           else
