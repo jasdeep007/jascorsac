@@ -11,12 +11,12 @@ export class AlbumSearchServiceService {
 
   constructor(private http: HttpClient) { }
   getDataFromDeezer(searchparameter: string): Observable<any> {
-    return this.callAPI('Deezer', searchparameter);
+    return this.callAPI('Deezer', searchparameter, 'https://api.deezer.com/search?strict=on&q=' + searchparameter + '&output=jsonp');
   }
   getDataFromiTunes(searchparameter: string): Observable<any> {
-    return this.callAPI('ITunes', searchparameter);
+    return this.callAPI('ITunes', searchparameter, 'https://itunes.apple.com/search?term=' + searchparameter);
   }
-  private callAPI(type: string, searchparameter: string): Observable<any> {
+  private callAPI(type: string, searchparameter: string, uri: string): Observable<any> {
     //return this.http.get('https://itunes.apple.com/search?term=' + searchparameter);
     if (searchparameter == '') {
       alert();
