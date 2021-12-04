@@ -1,18 +1,27 @@
 import { NgModule } from '@angular/core';
+import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HttpClientModule,HttpClientJsonpModule } from '@angular/common/http';
+import { AlbumSearchServiceService } from 'src/services/album-search-service.service';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    HttpClientJsonpModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [AlbumSearchServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

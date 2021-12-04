@@ -1,0 +1,50 @@
+img {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 3px;
+}
+
+.list-group {
+    width: 95%;
+}
+
+.list-group-item {
+    width: 230px;
+    display: inline-block;
+    box-shadow: 0 0 5px 5px #242323b3;
+    margin: 10px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.searchinput {
+    width: 100%;
+    font-size: 22px;
+    color: darkblue;
+    height: 50px;
+    text-align: center;
+}
+
+.des {
+    font-size: 13px;
+}
+
+.source {
+    color: red;
+    font-size: 11px;
+}
+
+.searchinput:focus {
+    box-shadow: 0 0 65px 10px #000000b3;
+}
+
+h1 {
+    width: 100%;
+    font-size: 15px;
+    ;
+    text-align: center;
+}
