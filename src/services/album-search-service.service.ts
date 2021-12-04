@@ -43,9 +43,6 @@ export class AlbumSearchServiceService {
         ;
     }
   }
-  handleError(arg0: string, arg1: string): any {
-    throw new Error('Method not implemented.');
-  }
   getDataFromiTunes(searchparameter: string): Observable<any> {
     //return this.http.get('https://itunes.apple.com/search?term=' + searchparameter);
     if (searchparameter == '') {
