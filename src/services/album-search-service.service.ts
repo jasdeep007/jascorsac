@@ -46,7 +46,6 @@ export class AlbumSearchServiceService {
   getDataFromiTunes(searchparameter: string): Observable<any> {
     //return this.http.get('https://itunes.apple.com/search?term=' + searchparameter);
     if (searchparameter == '') {
-      alert();
       return of([]);
     }
     else {
